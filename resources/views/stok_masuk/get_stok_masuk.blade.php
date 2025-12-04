@@ -56,11 +56,7 @@
       <div class="mt-2 col-6 col-md-3">
         <div class="form-group">
           <label for="">Pallet</label>
-          <select name="pallet_id" class="form-control" id="pallet" required>
-            @foreach ($pallet as $b)
-                <option value="{{ $b->id }}" {{ $stok->pallet_id == $b->id ? 'selected' : '' }}>{{ $b->nm_pallet }}</option>
-            @endforeach
-          </select>
+          <input type="number" class="form-control" name="pallet_id" value="{{ $stok->pallet_id }}" required>
         </div>
       </div>
 

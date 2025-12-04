@@ -91,12 +91,12 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 mb-2">
+                            {{-- <div class="col-12 mb-2">
                                 <div class="form-group">
                                     <label for="">Jumlah Pallet</label>
                                     <input type="number" name="jml_pallet" class="form-control" required>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
 

@@ -67,17 +67,17 @@ class LayoutController extends Controller
                     'nm_rak' => 'Lantai ' . $l
                 ]);
 
-                for ($p = 0; $p <= $jml_pallet; $p++) {
-                    $dt_pallet[] = [
-                        'id' => $lantai->id . $p,
-                        'rak_id' => $lantai->id,
-                        'nm_pallet' => 'Pallet ' . $p
-                    ];
-                }
+                // for ($p = 1; $p <= $jml_pallet; $p++) {
+                //     Pallet::create($dt_pallet[] = [
+                //         'id' => $lantai->id . $p,
+                //         'rak_id' => $lantai->id,
+                //         'nm_pallet' => 'Pallet ' . $p
+                //     ]);
+                // }
             }
         }
 
-        Pallet::insert($dt_pallet);
+        // Pallet::insert($dt_pallet);
 
         return redirect()->back()->with('success', 'Data layout berhasil dibuat');
     }

@@ -105,14 +105,14 @@ class StokMasukController extends Controller
         $pecah_block = explode( "|", $request->block_id );
         $pecah_cell = explode( "|", $request->cell_id );
         $pecah_rak = explode( "|", $request->rak_id );
-        $pecah_pallet = explode( "|", $request->pallet_id );
+        // $pecah_pallet = explode( "|", $request->pallet_id );
         $pecah_barang = explode( "|", $request->barang_id );
 
         if (!is_numeric($pecah_barang[0])) {
             return false;
         }
 
-        $c = Stok::selectRaw("IF(SUM(debit_box) IS NOT NULL, SUM(debit_box), 0) as sisa_debit_box, IF(SUM(debit_pak) IS NOT NULL, SUM(debit_pak), 0) as sisa_debit_pak, IF(SUM(debit_kg) IS NOT NULL, SUM(debit_kg), 0) as sisa_debit_kg, IF(SUM(debit_box) IS NOT NULL, SUM(kredit_box), 0) as sisa_kredit_box, IF(SUM(kredit_pak) IS NOT NULL, SUM(kredit_pak), 0) as sisa_kredit_pak, IF(SUM(kredit_kg) IS NOT NULL, SUM(kredit_kg), 0) as sisa_kredit_kg")->where('gudang_id',Session::get('gudang_id'))->where('block_id',$pecah_block[0])->where('cell_id',$pecah_cell[0])->where('rak_id',$pecah_rak[0])->where('pallet_id',$pecah_pallet[0])->first();
+        // $c = Stok::selectRaw("IF(SUM(debit_box) IS NOT NULL, SUM(debit_box), 0) as sisa_debit_box, IF(SUM(debit_pak) IS NOT NULL, SUM(debit_pak), 0) as sisa_debit_pak, IF(SUM(debit_kg) IS NOT NULL, SUM(debit_kg), 0) as sisa_debit_kg, IF(SUM(debit_box) IS NOT NULL, SUM(kredit_box), 0) as sisa_kredit_box, IF(SUM(kredit_pak) IS NOT NULL, SUM(kredit_pak), 0) as sisa_kredit_pak, IF(SUM(kredit_kg) IS NOT NULL, SUM(kredit_kg), 0) as sisa_kredit_kg")->where('gudang_id',Session::get('gudang_id'))->where('block_id',$pecah_block[0])->where('cell_id',$pecah_cell[0])->where('rak_id',$pecah_rak[0])->where('pallet_id',$pecah_pallet[0])->first();
 
         // if ( ($c->sisa_debit_box - $c->sisa_kredit_box) == 0 && ($c->sisa_debit_pak - $c->sisa_kredit_pak) == 0 && ($c->sisa_debit_kg - $c->sisa_kredit_kg) == 0 ) {
         //     $cek_lokasi = 1;
@@ -122,7 +122,44 @@ class StokMasukController extends Controller
 
         $cek_lokasi = 1;
 
-        Cart::instance('masuk')->add([
+        $cek_strip = strpos($request->pallet_id, '-');
+
+        if ($cek_strip) {
+            $strip_pallet = explode('-', $request->pallet_id);
+
+            for ($i = $strip_pallet[0]; $i <= $strip_pallet[1] ; $i++) { 
+                Cart::instance('masuk')->add([
+                'id' => $pecah_barang[0].$pecah_block[0].$pecah_cell[0].$pecah_rak[0].$request->tgl_exp.$request->tgl,
+                'name' => $pecah_barang[1],
+                'qty' => 1,
+                'price' => 1,
+                'options' => [
+                    'block_id' => $pecah_block[0],
+                    'cell_id' => $pecah_cell[0],
+                    'rak_id' => $pecah_rak[0],
+                    'pallet_id' => $i,
+                    'barang_id' => $pecah_barang[0],
+                    'block' => $pecah_block[1],
+                    'cell' => $pecah_cell[1],
+                    'rak' => $pecah_rak[1],
+                    'pallet' => 'Pallet '.$i,
+                    'barang' => $pecah_barang[1],
+                    'tgl_edit' => date("d/M/Y", strtotime($request->tgl)),
+                    'tgl_exp_edit' => date("d/M/Y", strtotime($request->tgl_exp)),
+                    'tgl' => $request->tgl,
+                    'tgl_exp' => $request->tgl_exp,
+                    'debit_box' => $request->debit_box,
+                    'debit_pak' => $request->debit_pak,
+                    'debit_kg' => $request->debit_kg,
+                    'shift_id' => $request->shift_id,
+                    'cek_lokasi' => $cek_lokasi,
+                    
+                ]
+                ]);
+            }
+
+        } else {
+            Cart::instance('masuk')->add([
             'id' => $pecah_barang[0].$pecah_block[0].$pecah_cell[0].$pecah_rak[0].$request->tgl_exp.$request->tgl,
             'name' => $pecah_barang[1],
             'qty' => 1,
@@ -131,12 +168,12 @@ class StokMasukController extends Controller
                 'block_id' => $pecah_block[0],
                 'cell_id' => $pecah_cell[0],
                 'rak_id' => $pecah_rak[0],
-                'pallet_id' => $pecah_pallet[0],
+                'pallet_id' => $request->pallet_id,
                 'barang_id' => $pecah_barang[0],
                 'block' => $pecah_block[1],
                 'cell' => $pecah_cell[1],
                 'rak' => $pecah_rak[1],
-                'pallet' => $pecah_pallet[1],
+                'pallet' => 'Pallet '.$request->pallet_id,
                 'barang' => $pecah_barang[1],
                 'tgl_edit' => date("d/M/Y", strtotime($request->tgl)),
                 'tgl_exp_edit' => date("d/M/Y", strtotime($request->tgl_exp)),
@@ -150,6 +187,12 @@ class StokMasukController extends Controller
                 
             ]
             ]);
+        }
+        
+
+        
+
+        
 
             return true;
 

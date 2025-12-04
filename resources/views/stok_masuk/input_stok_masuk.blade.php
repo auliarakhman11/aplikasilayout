@@ -81,14 +81,22 @@
                   </div>
                 </div>
 
-                <div class="mt-2 col-6 col-md-3">
+                {{-- <div class="mt-2 col-6 col-md-3">
                   <div class="form-group">
                     <label for="">Pallet</label>
                     <select name="pallet_id" class="form-control" id="pallet" required>
                       <option value="">Pilih Pallet</option>
                     </select>
                   </div>
+                </div> --}}
+
+                <div class="mt-2 col-6 col-md-3">
+                  <div class="form-group">
+                    <label for="">Pallet</label>
+                    <input type="text" name="pallet_id" class="form-control" required>
+                  </div>
                 </div>
+                
   
                 <div class="col-4 mt-2">
                   <div class="form-group">
@@ -124,9 +132,9 @@
                 </div>
 
                 <div class="mt-2 col-8">
-                  <a href="{{ route('downloadFormat') }}" class="btn btn-sm btn-primary mt-4"><i class='bx bx-export' ></i> Format</a>
+                  {{-- <a href="{{ route('downloadFormat') }}" class="btn btn-sm btn-primary mt-4"><i class='bx bx-export' ></i> Format</a>
                   <button type="button" class="btn btn-sm btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#modal_import_stok"><i class='bx bx-import' ></i> Import</button>
-                  <button type="button" class="btn btn-sm btn-primary mt-4" id="btn_scan_qrcode" data-bs-toggle="modal" data-bs-target="#modal_scan_qr"><i class='bx bx-qr' ></i> Scan</button>
+                  <button type="button" class="btn btn-sm btn-primary mt-4" id="btn_scan_qrcode" data-bs-toggle="modal" data-bs-target="#modal_scan_qr"><i class='bx bx-qr' ></i> Scan</button> --}}
                 </div>
 
                 <div class="mt-2 col-6 mb-2 mt-2"></div>
@@ -454,7 +462,7 @@
                                                         
                         },
                         error: function (data) { //jika error tampilkan error pada console
-                                    alert('Error:', data);
+                                   console.log(data);
                                     $("#btn_add_cart").removeAttr("disabled");
                             $('#btn_add_cart').html('<i class="bx bxs-right-arrow-circle"></i> Lanjut'); //tombol
                                 }

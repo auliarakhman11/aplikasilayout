@@ -66,7 +66,7 @@
                             <td>{{ $s->kd_gabungan }}</td>
                             <td>{{ $s->barang->nm_barang }}</td>
                             <td>{{ date("d/M/Y", strtotime($s->tgl_exp)) }}</td>
-                            <td>{{ $s->block->nm_block }}<br>{{ $s->cell->nm_cell }}<br>{{ $s->rak->nm_rak }}<br>{{ $s->pallet->nm_pallet }}</td>
+                            <td>{{ $s->block->nm_block }}<br>{{ $s->cell->nm_cell }}<br>{{ $s->rak->nm_rak }}<br>Pallet {{ $s->pallet_id }}</td>
                             <td>{{ $s->debit_box }} {{ (Session::get('gudang_id') == 3 || Session::get('gudang_id') == 4) ? 'Karung' : 'Box' }}<br>{{ $s->debit_pak }} Pack<br>{{ $s->debit_kg }} Kg</td>
                             <td>{{ $s->shift->nm_shift }}</td>
                             <td>{{ $s->user->name }}</td>

@@ -162,6 +162,11 @@ Route::middleware('auth')->group(function () {
     Route::post('addLayout', [LayoutController::class, 'addLayout'])->name('addLayout');
     //end layout
 
+    //warna
+    Route::post('gantiWarna', [DashboardController::class, 'gantiWarna'])->name('gantiWarna');
+    Route::get('printDataLayout', [DashboardController::class, 'printDataLayout'])->name('printDataLayout');
+    //end warna
+
     //block
     Route::get('forbidden-access', [AuthController::class, 'block'])->name('block');
     //endblock

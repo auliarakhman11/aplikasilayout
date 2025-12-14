@@ -18,8 +18,8 @@
                             <h5 class="float-start">Deatil Checker {{ $checker ? $checker[0]->kd_gabungan : '' }}</h5>
                             <button type="submit" class="btn btn-primary float-end ml-2"><i class="bx bxs-save"></i>
                                 Save</button>
-                            {{-- <a href="{{ route('pdfDetailMasuk', $checker[0]->kd_gabungan) }}" target="_blank"
-                                class="btn btn-primary float-end mr-3 ml-3"><i class='bx bxs-file-pdf'></i> Print</a> --}}
+                            <a href="{{ route('pdfDetailMasuk', $checker[0]->kd_gabungan) }}" target="_blank"
+                                class="btn btn-primary float-end mr-3 ml-3"><i class='bx bxs-file-pdf'></i> Print</a>
 
                             <input type="hidden" name="kd_gabungan" value="{{ $checker ? $checker[0]->kd_gabungan : '' }}">
                         </div>

@@ -22,7 +22,7 @@
 
     <div class="container-fluid">
         <div class="container">
-            <img class="float-start" width="50 px;" src="{{ asset('img') }}/cp.jpeg">
+            <img class="float-start" width="50 px;" src="{{ public_path('img') }}/cp.jpeg">
             <center>
                 <h4 style="margin-top: -50px;">PT. CHAROEN POKPHAND INDONESIA</h4>
             </center><br>
@@ -103,10 +103,10 @@
                             <td style="text-align: center;">{{ $d->debit_pak }}</td>
                             <td style="text-align: center;">{{ $d->debit_kg }}</td>
                             <td style="text-align: center;"></td>
-                            <td style="text-align: center;">{{ preg_replace('/Block/', '', $d->block->nm_block) }}</td>
-                            <td style="text-align: center;">{{ preg_replace('/Cell/', ' ', $d->cell->nm_cell) }}</td>
-                            <td style="text-align: center;">{{ preg_replace('/Lantai/', ' ', $d->rak->nm_rak) }}</td>
-                            <td style="text-align: center;">{{ $d->pallet_id }}</td>
+                            <td style="text-align: center;">{{ $d->block->nm_block }}</td>
+                            <td style="text-align: center;">{{ preg_replace('/[^0-9]/', ' ', $d->cell->nm_cell) }}</td>
+                            <td style="text-align: center;">{{ preg_replace('/[^0-9]/', ' ', $d->rak->nm_rak) }}</td>
+                            <td style="text-align: center;">{{ $d->pallet_id }}
                             <td></td>
                         </tr>
                     @endforeach

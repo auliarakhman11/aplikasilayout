@@ -99,9 +99,9 @@
                                             <td>{{ $s->barang->nm_barang }}</td>
                                             <td>{{ $s->barang->kode_barang }}</td>
                                             <td>{{ date('d/m/Y', strtotime($s->tgl_exp)) }}</td>
-                                            <td>{{ preg_replace('/Block/', '', $s->block->nm_block) }}</td>
-                                            <td>{{ preg_replace('/Cell/', ' ', $s->cell->nm_cell) }}</td>
-                                            <td>{{ preg_replace('/Lantai/', ' ', $s->rak->nm_rak) }}</td>
+                                            <td>{{ $s->block->nm_block }}</td>
+                                            <td>{{ preg_replace('/[^0-9]/', ' ', $s->cell->nm_cell) }}</td>
+                                            <td>{{ preg_replace('/[^0-9]/', ' ', $s->rak->nm_rak) }}</td>
                                             <td>{{ $s->pallet_id }}</td>
                                             <td>{{ $s->jml_debit_box ? $s->jml_debit_box : 0 }}</td>
                                             <td>{{ $s->jml_debit_pak ? $s->jml_debit_pak : 0 }}</td>

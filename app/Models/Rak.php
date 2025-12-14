@@ -10,12 +10,10 @@ class Rak extends Model
     use HasFactory;
 
     protected $table = 'rak';
-    protected $fillable = ['cell_id','nm_rak'];
+    protected $fillable = ['cell_id', 'nm_rak', 'warna'];
 
     public function pallet()
     {
-        return $this->hasMany(Pallet::class,'rak_id','id');
+        return $this->hasMany(Pallet::class, 'rak_id', 'id');
     }
-
-
 }

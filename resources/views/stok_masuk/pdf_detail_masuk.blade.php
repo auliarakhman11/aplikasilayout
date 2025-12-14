@@ -21,7 +21,7 @@
 
     <div class="container-fluid">
         <div class="container">
-            <img class="float-start" width="50 px;" src="{{ asset('img') }}/cp.jpeg">
+            <img class="float-start" width="50 px;" src="{{ public_path('img') }}/cp.jpeg">
             <center>
                 <h4 style="margin-top: -50px;">PT. CHAROEN POKPHAND INDONESIA</h4>
             </center><br>

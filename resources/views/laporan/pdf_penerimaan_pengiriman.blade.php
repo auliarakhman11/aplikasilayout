@@ -22,7 +22,7 @@
 
     <div class="container-fluid">
         <div class="container">
-            <img class="float-start" width="50 px;" src="{{ asset('img') }}/cp.jpeg">
+            <img class="float-start" width="50 px;" src="{{ public_path('img') }}/cp.jpeg">
             <center>
                 <h4 style="margin-top: -50px;">PT. CHAROEN POKPHAND INDONESIA</h4>
             </center><br>
@@ -105,10 +105,10 @@
                             <td>{{ $s->barang->nm_barang }}</td>
                             <td>{{ $s->barang->kode_barang }}</td>
                             <td>{{ date('d/m/Y', strtotime($s->tgl_exp)) }}</td>
-                            <td style="text-align: center;">{{ preg_replace('/Block/', '', $s->block->nm_block) }}</td>
-                            <td style="text-align: center;">{{ preg_replace('/Cell/', ' ', $s->cell->nm_cell) }}</td>
-                            <td style="text-align: center;">{{ preg_replace('/Lantai/', ' ', $s->rak->nm_rak) }}</td>
-                            <td style="text-align: center;">{{ $s->pallet_id }}</td>
+                            <td style="text-align: center;">{{ $s->block->nm_block }}</td>
+                            <td style="text-align: center;">{{ preg_replace('/[^0-9]/', ' ', $s->cell->nm_cell) }}</td>
+                            <td style="text-align: center;">{{ preg_replace('/[^0-9]/', ' ', $s->rak->nm_rak) }}</td>
+                            <td style="text-align: center;">{{ $s->pallet_id }}
                             <td style="text-align: center;">{{ $s->jml_debit_box ? $s->jml_debit_box : 0 }}</td>
                             <td style="text-align: center;">{{ $s->jml_debit_pak ? $s->jml_debit_pak : 0 }}</td>
                             <td style="text-align: center;">{{ $s->jml_debit_kg ? $s->jml_debit_kg : 0 }}</td>
